@@ -1,0 +1,147 @@
+package BUS;
+
+import DAO.NhanVienDAO;
+import DTO.NhanVienDTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+public class NhanVienBUS {
+
+    private ArrayList<NhanVienDTO> danhSachNhanVien;
+    private NhanVienDAO nhanVienDAO;
+
+    public NhanVienBUS() {
+        nhanVienDAO = new NhanVienDAO();
+    }
+
+    public void loadData() {
+        danhSachNhanVien = nhanVienDAO.getDataFromSQL();
+    }
+
+    public boolean addNhanVien(String IDNhanVien, String HoNhanVien, String TenNhanVien, String LoaiNhanVien, String SDT, String Gmail, String GioiTinh, int TrangThai) {
+        
+        // Kiem tra input co hop le khong ?
+        if (checkEmtyValue(HoNhanVien) || checkEmtyValue(SDT) || checkEmtyValue(Gmail) || checkEmtyValue(GioiTinh)) {
+            JOptionPane.showMessageDialog(null, "Khong duoc de trong bat ki thong tin nao! Vui long nhap lai!", "Thong bao", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        NhanVienDTO nhanVienDTO = new NhanVienDTO(createAutoIDNhanVien(), HoNhanVien, TenNhanVien, LoaiNhanVien, SDT, Gmail, GioiTinh, TrangThai);
+
+        if (nhanVienDAO.addNhanVien(nhanVienDTO) > 0) {
+            JOptionPane.showMessageDialog(null, "THEM NHAN VIEN THANH CONG");
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean checkEmtyValue(String value) {
+        if (value.equals("")) {
+            return true;
+        }
+        return false;
+    }
+    
+    public String createAutoIDNhanVien() {
+        loadData();
+        int id = danhSachNhanVien.size() + 1;
+        
+        if (id >= 100) {
+            return "NV" + id;
+        } else {
+            return "NV0" + String.format("%02d", id);
+        }
+    }
+    
+    public boolean deleteNhanVien(String IDNhanVien) {
+        if (nhanVienDAO.deleteNhanVien(IDNhanVien) > 0) {
+            JOptionPane.showMessageDialog(null, "XOA NHAN VIEN THANH CONG");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkExistIDNhanVien(String IDNhanVien) { // Hàm tìm kiem ID nhan vien
+        loadData();
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getIDNhanVien().equals(IDNhanVien)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkExistHoNhanVien(String hoNhanVien) {
+        loadData();
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getHoNhanVien().equals(hoNhanVien)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkExistTenNhanVien(String tenNhanVien) {
+        loadData();
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getTenNhanVien().equals(tenNhanVien)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkExistSDT(String sdt) {
+        loadData();
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getSDT().equals(sdt)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkExistGmail(String gmail) {
+        loadData();
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getGmail().equals(gmail)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkExistGioiTinh(String gioiTinh) {
+        loadData();
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getGioiTinh().equals(gioiTinh)) {
+               return true;
+            }
+        }
+         return false;
+    } 
+    
+//    Hàm tìm kiem 1 nhan vien theo ma nhan vien (IDNhanVien)
+    public NhanVienDTO searchNhanVienByID(NhanVienDTO nhanVien) {
+        loadData();
+        for (NhanVienDTO nhanVienDTO : danhSachNhanVien) {
+            if (nhanVienDTO.getIDNhanVien().equals(nhanVien.getIDNhanVien())) {
+                return nhanVienDTO;
+            }
+        }        
+        return null;
+    } 
+
+//    Hàm render du lieu vao bang cho NhanVienGUI su dung
+    public void renderTable(DefaultTableModel model) {
+        loadData();
+        model.setRowCount(0);
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getTrangThai()== 0) {
+                model.addRow(new Object[]{nhanVien.getIDNhanVien(), nhanVien.getHoNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSDT(), nhanVien.getGmail(), nhanVien.getGioiTinh()
+            });
+            } 
+        }
+    }
+
+}
