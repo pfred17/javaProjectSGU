@@ -20,7 +20,7 @@ public class NhanVienBUS {
     }
 
     public boolean addNhanVien(String IDNhanVien, String HoNhanVien, String TenNhanVien, String LoaiNhanVien, String SDT, String Gmail, String GioiTinh, int TrangThai) {
-        
+
         // Kiem tra input co hop le khong ?
         if (checkEmtyValue(HoNhanVien) || checkEmtyValue(SDT) || checkEmtyValue(Gmail) || checkEmtyValue(GioiTinh)) {
             JOptionPane.showMessageDialog(null, "Khong duoc de trong bat ki thong tin nao! Vui long nhap lai!", "Thong bao", JOptionPane.ERROR_MESSAGE);
@@ -34,31 +34,51 @@ public class NhanVienBUS {
         }
         return false;
     }
+
+    public boolean deleteNhanVien(String IDNhanVien) {
+        int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa nhân viên này không ? ", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            if (nhanVienDAO.deleteNhanVien(IDNhanVien) > 0) {
+                JOptionPane.showMessageDialog(null, "XOA NHAN VIEN THANH CONG");
+                return true;
+            }
+        }
+        return false;
+    }
     
+    public boolean updateNhanVien(String IDNhanVien, String HoNhanVien, String TenNhanVien, String LoaiNhanVien, String SDT, String Gmail, String GioiTinh, int TrangThai) {
+        // Kiem tra input co hop le khong ?
+        if (checkEmtyValue(HoNhanVien) || checkEmtyValue(SDT) || checkEmtyValue(Gmail) || checkEmtyValue(GioiTinh)) {
+            JOptionPane.showMessageDialog(null, "Khong duoc de trong bat ki thong tin nao! Vui long nhap lai!", "Thong bao", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        NhanVienDTO nhanVienDTO = new NhanVienDTO(IDNhanVien, HoNhanVien, TenNhanVien, LoaiNhanVien, SDT, Gmail, GioiTinh, TrangThai);
+        
+        if(nhanVienDAO.updateNhanVien(nhanVienDTO) > 0) {
+            JOptionPane.showMessageDialog(null, "UPDATE NHAN VIEN THANH CONG");
+            return true;
+        }
+        
+        return false;
+    }
+
     public boolean checkEmtyValue(String value) {
         if (value.equals("")) {
             return true;
         }
         return false;
     }
-    
+
     public String createAutoIDNhanVien() {
         loadData();
         int id = danhSachNhanVien.size() + 1;
-        
+
         if (id >= 100) {
             return "NV" + id;
         } else {
             return "NV0" + String.format("%02d", id);
         }
-    }
-    
-    public boolean deleteNhanVien(String IDNhanVien) {
-        if (nhanVienDAO.deleteNhanVien(IDNhanVien) > 0) {
-            JOptionPane.showMessageDialog(null, "XOA NHAN VIEN THANH CONG");
-            return true;
-        }
-        return false;
     }
 
     public boolean checkExistIDNhanVien(String IDNhanVien) { // Hàm tìm kiem ID nhan vien
@@ -110,17 +130,17 @@ public class NhanVienBUS {
         }
         return false;
     }
-    
+
     public boolean checkExistGioiTinh(String gioiTinh) {
         loadData();
         for (NhanVienDTO nhanVien : danhSachNhanVien) {
             if (nhanVien.getGioiTinh().equals(gioiTinh)) {
-               return true;
+                return true;
             }
         }
-         return false;
-    } 
-    
+        return false;
+    }
+
 //    Hàm tìm kiem 1 nhan vien theo ma nhan vien (IDNhanVien)
     public NhanVienDTO searchNhanVienByID(NhanVienDTO nhanVien) {
         loadData();
@@ -128,19 +148,46 @@ public class NhanVienBUS {
             if (nhanVienDTO.getIDNhanVien().equals(nhanVien.getIDNhanVien())) {
                 return nhanVienDTO;
             }
-        }        
+        }
         return null;
-    } 
+    }
 
 //    Hàm render du lieu vao bang cho NhanVienGUI su dung
     public void renderTable(DefaultTableModel model) {
         loadData();
         model.setRowCount(0);
         for (NhanVienDTO nhanVien : danhSachNhanVien) {
-            if (nhanVien.getTrangThai()== 0) {
-                model.addRow(new Object[]{nhanVien.getIDNhanVien(), nhanVien.getHoNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSDT(), nhanVien.getGmail(), nhanVien.getGioiTinh()
-            });
-            } 
+            if (nhanVien.getTrangThai() == 0) {
+                model.addRow(new Object[]{nhanVien.getIDNhanVien(), nhanVien.getHoNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSDT(), nhanVien.getGmail(), nhanVien.getGioiTinh(), nhanVien.getLoaiNhanVien()
+                });
+            }
+        }
+    }
+    
+//    Hàm render dữ liệu vào bảng khi thực hiện chức năng tìm kiếm nhân viên
+    public void renderNhanVienTableSearch(DefaultTableModel model, String keyValue) {
+        loadData();
+        boolean flag = false;
+        model.setRowCount(0);
+        if (keyValue.equals("")) {
+           JOptionPane.showMessageDialog(null, "Dữ liệu không được bỏ trống!!!", "Thông báo", JOptionPane.ERROR_MESSAGE); 
+        } 
+        for (NhanVienDTO nhanVien : danhSachNhanVien) {
+            if (nhanVien.getIDNhanVien().toLowerCase().equals(keyValue)
+                || nhanVien.getHoNhanVien().toLowerCase().equals(keyValue)
+                || nhanVien.getTenNhanVien().toLowerCase().equals(keyValue)
+                || nhanVien.getSDT().toLowerCase().equals(keyValue)
+                || nhanVien.getGmail().toLowerCase().equals(keyValue)
+                || nhanVien.getGioiTinh().toLowerCase().equals(keyValue)
+                || nhanVien.getLoaiNhanVien().toLowerCase().equals(keyValue)    ) {
+                if (nhanVien.getTrangThai() == 0) {
+                    model.addRow(new Object[]{nhanVien.getIDNhanVien(), nhanVien.getHoNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSDT(), nhanVien.getGmail(), nhanVien.getGioiTinh(), nhanVien.getLoaiNhanVien()});
+                    flag = true;
+                }
+            }
+        }
+        if (!flag) {
+            JOptionPane.showMessageDialog(null, "Không tìm thấy nhân viên nào!!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }
 

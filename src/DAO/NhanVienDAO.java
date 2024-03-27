@@ -58,7 +58,8 @@ public class NhanVienDAO {
     }
     
     public int updateNhanVien(NhanVienDTO nhanVien) {
-        String sqlQuery = "update NhanVien" + "set HoNhanVien = ?, TenNhanVien = ?, LoaiNhanVien = ?,SDT = ?, Gmail = ?, GioiTinh = ?" + "where IDNhanVien = ?";
+        String sqlQuery = "update NhanVien set HoNhanVien = ?, TenNhanVien = ?, LoaiNhanVien = ?,SDT = ?, Gmail = ?, GioiTinh = ? where IDNhanVien = ?";
+
         try {
             Connection connection = SQLServerConnection.getConnection();
             PreparedStatement pr = connection.prepareStatement(sqlQuery);
