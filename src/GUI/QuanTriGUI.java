@@ -47,7 +47,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        nhanVienGUI1 = new GUI.NhanVienGUI();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -240,7 +239,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         sidebar.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 220, 20));
 
         background.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 550));
-        background.add(nhanVienGUI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 760, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,7 +268,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         resetColor(btnStatistical);
         resetColor(btnSupplier);
         resetColor(panelCustomer);
-        nhanVienGUI1.setVisible(true);
     }//GEN-LAST:event_panelEmployeerMousePressed
 
     private void panelEmployeerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEmployeerMouseEntered
@@ -289,7 +286,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         resetColor(panelEmployeer);
         resetColor(btnStatistical);
         resetColor(btnSupplier);
-        nhanVienGUI1.setVisible(false);
     }//GEN-LAST:event_btnProductMousePressed
 
     private void btnSupplierMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMousePressed
@@ -299,7 +295,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         resetColor(panelCustomer);
         resetColor(panelEmployeer);
         resetColor(btnStatistical);
-        nhanVienGUI1.setVisible(false);
     }//GEN-LAST:event_btnSupplierMousePressed
 
     private void btnStatisticalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStatisticalMousePressed
@@ -309,7 +304,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         resetColor(btnProduct);
         resetColor(panelCustomer);
         resetColor(panelEmployeer);
-        nhanVienGUI1.setVisible(false);
     }//GEN-LAST:event_btnStatisticalMousePressed
 
     private void panelCustomerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCustomerMousePressed
@@ -319,7 +313,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
         resetColor(btnProduct);
         resetColor(btnStatistical);
         resetColor(btnSupplier);
-        nhanVienGUI1.setVisible(false);
     }//GEN-LAST:event_panelCustomerMousePressed
 
     private void setColor(JPanel panel) {
@@ -385,7 +378,6 @@ public class QuanTriGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
-    private GUI.NhanVienGUI nhanVienGUI1;
     private javax.swing.JPanel panelCustomer;
     private javax.swing.JPanel panelEmployeer;
     private javax.swing.JPanel sidebar;
