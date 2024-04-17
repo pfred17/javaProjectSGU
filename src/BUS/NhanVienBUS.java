@@ -178,8 +178,7 @@ public class NhanVienBUS {
                 || nhanVien.getTenNhanVien().toLowerCase().equals(keyValue)
                 || nhanVien.getSDT().toLowerCase().equals(keyValue)
                 || nhanVien.getGmail().toLowerCase().equals(keyValue)
-                || nhanVien.getGioiTinh().toLowerCase().equals(keyValue)
-                || nhanVien.getLoaiNhanVien().toLowerCase().equals(keyValue)    ) {
+                || nhanVien.getGioiTinh().toLowerCase().equals(keyValue)   ) {
                 if (nhanVien.getTrangThai() == 0) {
                     model.addRow(new Object[]{nhanVien.getIDNhanVien(), nhanVien.getHoNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSDT(), nhanVien.getGmail(), nhanVien.getGioiTinh(), nhanVien.getLoaiNhanVien()});
                     flag = true;
