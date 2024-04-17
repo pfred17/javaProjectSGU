@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DTO;
 
 /**
@@ -9,18 +6,19 @@ package DTO;
  * @author Dell
  */
 public class KhachHangDTO {
-    private int IDKhachHang;
+    private String IDKhachHang;
     private String HoKH;
     private String TenKh;
     private String SDT;
     private String Gmail;
     private String GioiTinh;
     private Double Tongchitieu;
+    private int TrangThai;
 
     public KhachHangDTO() {
     }
-
-    public KhachHangDTO(int IDKhachHang, String HoKH, String TenKh, String SDT, String Gmail, String GioiTinh, Double Tongchitieu) {
+ 
+    public KhachHangDTO(String IDKhachHang, String HoKH, String TenKh, String SDT, String Gmail, String GioiTinh, Double Tongchitieu,int TrangThai) {
         this.IDKhachHang = IDKhachHang;
         this.HoKH = HoKH;
         this.TenKh = TenKh;
@@ -28,15 +26,26 @@ public class KhachHangDTO {
         this.Gmail = Gmail;
         this.GioiTinh = GioiTinh;
         this.Tongchitieu = Tongchitieu;
+        this.TrangThai=TrangThai;
     }
 
-    public int getIDKhachHang() {
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
+    public String getIDKhachHang() {
         return IDKhachHang;
     }
 
-    public void setIDKhachHang(int IDKhachHang) {
+    public void setIDKhachHang(String IDKhachHang) {
         this.IDKhachHang = IDKhachHang;
     }
+
+    
 
     public String getHoKH() {
         return HoKH;
