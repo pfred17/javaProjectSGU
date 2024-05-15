@@ -3,17 +3,15 @@ package DTO;
 public class TaiKhoanNhanVienDTO {
     private String IDNhanVien;
     private String MatKhau;
-    private String LoaiNhanVien;
     private String TrangThai;
     
     public TaiKhoanNhanVienDTO() {
         
     }
 
-    public TaiKhoanNhanVienDTO(String IDNhanVien, String MatKhau, String LoaiNhanVien, String TrangThai) {
+    public TaiKhoanNhanVienDTO(String IDNhanVien, String MatKhau, String TrangThai) {
         this.IDNhanVien = IDNhanVien;
         this.MatKhau = MatKhau;
-        this.LoaiNhanVien = LoaiNhanVien;
         this.TrangThai = TrangThai;
     }
     
@@ -36,14 +34,6 @@ public class TaiKhoanNhanVienDTO {
 
     public void setMatKhau(String MatKhau) {
         this.MatKhau = MatKhau;
-    }
-
-    public String getLoaiNhanVien() {
-        return LoaiNhanVien;
-    }
-
-    public void setLoaiNhanVien(String LoaiNhanVien) {
-        this.LoaiNhanVien = LoaiNhanVien;
     }
 
     public String getTrangThai() {

@@ -28,4 +28,25 @@ public class ChiTietHoaDonDAO {
             return null;
         }
     }
+    
+    public int addChiTietHoaDon(ChiTietHoaDonDTO chiTietHoaDon) {
+        String sqlQuery = "insert into ChiTietHoaDon(IDHoaDon, IDSanPham, SoLuong, DonGia, ThanhTien, TienGiamGia) values(?, ?, ?, ?, ?, ?)";
+        try {
+            Connection connection = SQLServerConnection.getConnection();
+            PreparedStatement pr = connection.prepareStatement(sqlQuery);
+
+            pr.setString(1, chiTietHoaDon.getIDHoaDon());
+            pr.setString(2, chiTietHoaDon.getIDSanPham());
+            pr.setInt(3, chiTietHoaDon.getSoLuong());
+            pr.setDouble(4, chiTietHoaDon.getDonGia());
+            pr.setDouble(5, chiTietHoaDon.getThanhTien());
+            pr.setDouble(6, chiTietHoaDon.getTienGiamGia());
+
+            return pr.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

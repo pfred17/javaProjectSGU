@@ -1,37 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTO;
 
-/**
- *
- * @author Dell
- */
+import java.util.Date;
+
 public class ChuongTrinhGiamGiaDTO {
-    private int IDGiamgia;
+    private String IDGiamGia;
     private String TenCT;
     private String LoaiCT;
-    private String ThoiGianKhoidau;
-    private String ThoiGianKetthuc;
+    private Date ThoiGianKhoidau;
+    private Date ThoiGianKetthuc;
+    private int TrangThai;
 
-    public ChuongTrinhGiamGiaDTO() {
-    }
-
-    public ChuongTrinhGiamGiaDTO(int IDGiamgia, String TenCT, String LoaiCT, String ThoiGianKhoidau, String ThoiGianKetthuc) {
-        this.IDGiamgia = IDGiamgia;
+    public ChuongTrinhGiamGiaDTO(String IDGiamGia, String TenCT, String LoaiCT, Date ThoiGianKhoidau, Date ThoiGianKetthuc, int TrangThai) {
+        this.IDGiamGia = IDGiamGia;
         this.TenCT = TenCT;
         this.LoaiCT = LoaiCT;
         this.ThoiGianKhoidau = ThoiGianKhoidau;
         this.ThoiGianKetthuc = ThoiGianKetthuc;
+        this.TrangThai = TrangThai;
     }
 
-    public int getIDGiamgia() {
-        return IDGiamgia;
+    public String getIDGiamGia() {
+        return IDGiamGia;
     }
 
-    public void setIDGiamgia(int IDGiamgia) {
-        this.IDGiamgia = IDGiamgia;
+    public void setIDGiamGia(String IDGiamGia) {
+        this.IDGiamGia = IDGiamGia;
     }
 
     public String getTenCT() {
@@ -50,21 +43,29 @@ public class ChuongTrinhGiamGiaDTO {
         this.LoaiCT = LoaiCT;
     }
 
-    public String getThoiGianKhoidau() {
+    public Date getThoiGianKhoidau() {
         return ThoiGianKhoidau;
     }
 
-    public void setThoiGianKhoidau(String ThoiGianKhoidau) {
+    public void setThoiGianKhoidau(Date ThoiGianKhoidau) {
         this.ThoiGianKhoidau = ThoiGianKhoidau;
     }
 
-    public String getThoiGianKetthuc() {
+    public Date getThoiGianKetthuc() {
         return ThoiGianKetthuc;
     }
 
-    public void setThoiGianKetthuc(String ThoiGianKetthuc) {
+    public void setThoiGianKetthuc(Date ThoiGianKetthuc) {
         this.ThoiGianKetthuc = ThoiGianKetthuc;
     }
-    
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
     
 }

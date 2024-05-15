@@ -1,27 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
+import BUS.NhanVienBUS;
 import BUS.TaiKhoanNhanVienBUS;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author admin
- */
 public class LoginGUI extends javax.swing.JFrame {
 
     private TaiKhoanNhanVienBUS taiKhoanNhanVienBUS;
-
-    /**
-     * Creates new form TestUI
-     */
+    private NhanVienBUS nhanVienBUS;
+    private BanHangGUI banHangGUI;
+    
     public LoginGUI() {
         initComponents();
         setLocationRelativeTo(null);
         taiKhoanNhanVienBUS = new TaiKhoanNhanVienBUS();
+        nhanVienBUS = new NhanVienBUS();
+    }
+
+    public boolean login() {
+        String username = txtUserID.getText();
+        String password = txtPassword.getText();
+        String LoaiNhanVien = nhanVienBUS.getLoaiNhanVien(username);
+
+        if (taiKhoanNhanVienBUS.login(username, password)) {
+            QuanTriGUI quanTriGUI = new QuanTriGUI();
+            quanTriGUI.setVisible(true);
+            quanTriGUI.setUserValueFromLoginGUI(username, LoaiNhanVien);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -55,7 +62,8 @@ public class LoginGUI extends javax.swing.JFrame {
 
         sloganLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sloganLable.setForeground(new java.awt.Color(255, 255, 255));
-        sloganLable.setText("the phone store number one in the world");
+        sloganLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sloganLable.setText("cửa hàng điện thoại hàng đầu thời giới");
 
         logoLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asset/image/171104629891273425.png"))); // NOI18N
 
@@ -105,31 +113,21 @@ public class LoginGUI extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("UserID");
+        jLabel4.setText("Tên đăng nhập");
 
         txtUserID.setPreferredSize(new java.awt.Dimension(64, 30));
-        txtUserID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserIDActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Password");
+        jLabel1.setText("Mật khẩu");
 
         txtPassword.setForeground(new java.awt.Color(51, 51, 51));
         txtPassword.setPreferredSize(new java.awt.Dimension(64, 30));
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
 
         btnLogin.setBackground(new java.awt.Color(54, 48, 98));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("LOGIN");
+        btnLogin.setText("ĐĂNG NHẬP");
         btnLogin.setBorder(null);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,37 +193,13 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserIDActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         if (login()) {
             this.dispose();
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    public boolean login() {
-        String username = txtUserID.getText();
-        String password = txtPassword.getText();
-
-        if (taiKhoanNhanVienBUS.login(username, password)) {
-            if (username.equals("admin") || username.equals("NV001")) {
-                new QuanTriGUI().setVisible(true); 
-            } else {
-                new BanHangGUI().setVisible(true); 
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * @param args the command line arguments
@@ -252,6 +226,8 @@ public class LoginGUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -18,10 +18,9 @@ public class TaiKhoanNhanVienDAO {
             while(rs.next()) {
                 String IDNhanVien = rs.getString("IDNhanVien");
                 String matKhau = rs.getString("MatKhau");
-                String LoaiNhanVien = rs.getString("LoaiNhanVien");
-                String TrangThai = rs.getString("TrangThai");
+                String TrangThai = rs.getString("TrangThaiTaiKhoan");
                 
-                list.add(new TaiKhoanNhanVienDTO(IDNhanVien, matKhau, LoaiNhanVien, TrangThai));
+                list.add(new TaiKhoanNhanVienDTO(IDNhanVien, matKhau, TrangThai));
             }
             
             return list;
@@ -31,15 +30,15 @@ public class TaiKhoanNhanVienDAO {
         }
     }
     
-    public int addTaiKhoanNhanVien(String IDNhanVien,String LoaiNhanVien) {
-        String sqlQuery = "insert into TaiKhoanNhanVien(IDNhanVien, MatKhau, LoaiNhanVien, TrangThai)"
-                        + "values(?, 123456, ?, on)";
+    // Hàm khởi tạo tài khoản nhân viên (chưa được cấp tài khoản)
+    public int createTaiKhoanNhanVien(String IDNhanVien) {
+        String sqlQuery = "insert into TaiKhoanNhanVien(IDNhanVien, MatKhau, TrangThaiTaiKhoan)"
+                        + "values(?, 123456, 0)";
         try {
             Connection connection = SQLServerConnection.getConnection();
             PreparedStatement pr = connection.prepareStatement(sqlQuery);
                 
             pr.setString(1, IDNhanVien);
-            pr.setString(2, LoaiNhanVien);
             
             return pr.executeUpdate();
             
@@ -49,4 +48,45 @@ public class TaiKhoanNhanVienDAO {
         }
     }
     
+    // Hàm thêm\cấp tài khoản nhân viên
+    public int addTaiKhoanNhanVien(String IDNhanVien) {
+        String sqlQuery = "update TaiKhoanNhanVien set TrangThaiTaiKhoan = 1 where IDNhanVien = ?";
+        try {
+            Connection connection = SQLServerConnection.getConnection();
+            PreparedStatement pr = connection.prepareStatement(sqlQuery);
+                
+            pr.setString(1, IDNhanVien);
+            
+            return pr.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    // Hàm khóa tài khoản nhân viên
+    public int blockTaiKhoanNhanVien(String IDNhanVien) {
+        String sqlQuery = "update TaiKhoanNhanVien set TrangThaiTaiKhoan = 2 where IDNhanVien = ?";
+        try {
+            Connection connection = SQLServerConnection.getConnection();
+            PreparedStatement pr = connection.prepareStatement(sqlQuery);
+                
+            pr.setString(1, IDNhanVien);
+            
+            return pr.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    // Sửa thông tin tài khoản nhân viên
+    public boolean updateTaiKhoanNhanVien(TaiKhoanNhanVienDTO taiKhoan) {
+//        String sqlQuery = "update TaiKhoanNhanVien set "
+    
+
+        return true;
+    }
 }

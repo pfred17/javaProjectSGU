@@ -1,10 +1,5 @@
-
 package DTO;
 
-/**
- *
- * @author Dell
- */
 public class KhachHangDTO {
     private String IDKhachHang;
     private String HoKH;

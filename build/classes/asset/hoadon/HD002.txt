@@ -1,0 +1,9 @@
+============== HÓA ĐƠN ==============
+============== THÔNG TIN ==============
+Mã khách hàng: KH003
+Mã nhân viên: null
+Mã hóa đơn: HD002
+============== SẢN PHẨM ==============
+Tên sản phẩm			Số lượng			Đơn giá			Khuyến mãi			Thành tiền
+Huawei P50 Pro		1		20,000,000		0.45		11,000,000		
+Google Pixel 6 Pro		1		18,000,000		0.3		12,600,000		

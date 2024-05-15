@@ -153,7 +153,8 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="the phone store number one in the world"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="c&#x1eed;a h&#xe0;ng &#x111;i&#x1ec7;n tho&#x1ea1;i h&#xe0;ng &#x111;&#x1ea7;u th&#x1edd;i gi&#x1edb;i"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="logoLable">
@@ -195,7 +196,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="UserID"/>
+            <Property name="text" type="java.lang.String" value="T&#xea;n &#x111;&#x103;ng nh&#x1ead;p"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUserID">
@@ -204,9 +205,6 @@
               <Dimension value="[64, 30]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUserIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -216,7 +214,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Password"/>
+            <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPassword">
@@ -228,9 +226,6 @@
               <Dimension value="[64, 30]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLogin">
           <Properties>
@@ -243,7 +238,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="LOGIN"/>
+            <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG NH&#x1eac;P"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>

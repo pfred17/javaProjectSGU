@@ -1,43 +1,41 @@
-
 package DTO;
 
-
 public class ChiTietChuongTrinhGiamGiaDTO {
-    private int IDGiamgia;
-     private int IDsp;
-     private Double NDChuongTrinhGiamGia;
 
-    public ChiTietChuongTrinhGiamGiaDTO() {
+    private String IDGiamGia;
+    private String IDSanPham;
+    private double PhanTramGiamGia;
+
+    public ChiTietChuongTrinhGiamGiaDTO(String IDGiamGia, String IDSanPham, double PhanTramGiamGia) {
+        this.IDGiamGia = IDGiamGia;
+        this.IDSanPham = IDSanPham;
+        this.PhanTramGiamGia = PhanTramGiamGia;
     }
 
-    public ChiTietChuongTrinhGiamGiaDTO(int IDGiamgia, int IDsp, Double NDChuongTrinhGiamGia) {
-        this.IDGiamgia = IDGiamgia;
-        this.IDsp = IDsp;
-        this.NDChuongTrinhGiamGia = NDChuongTrinhGiamGia;
+    public String getIDGiamGia() {
+        return IDGiamGia;
     }
 
-    public int getIDGiamgia() {
-        return IDGiamgia;
+    public void setIDGiamGia(String IDGiamGia) {
+        this.IDGiamGia = IDGiamGia;
     }
 
-    public void setIDGiamgia(int IDGiamgia) {
-        this.IDGiamgia = IDGiamgia;
+    public String getIDSanPham() {
+        return IDSanPham;
     }
 
-    public int getIDsp() {
-        return IDsp;
+    public void setIDSanPham(String IDSanPham) {
+        this.IDSanPham = IDSanPham;
     }
 
-    public void setIDsp(int IDsp) {
-        this.IDsp = IDsp;
+    public double getPhanTramGiamGia() {
+        return PhanTramGiamGia;
     }
 
-    public Double getNDChuongTrinhGiamGia() {
-        return NDChuongTrinhGiamGia;
+    public void setPhanTramGiamGia(double PhanTramGiamGia) {
+        this.PhanTramGiamGia = PhanTramGiamGia;
     }
 
-    public void setNDChuongTrinhGiamGia(Double NDChuongTrinhGiamGia) {
-        this.NDChuongTrinhGiamGia = NDChuongTrinhGiamGia;
-    }
     
+
 }

@@ -30,4 +30,65 @@ public class HoaDonDAO {
             return null;
         }
     }
+    
+    public int addHoaDon(HoaDonDTO hoaDon) {
+        String sqlQuery = "insert into HoaDon(IDHoaDon, IDKhachHang, IDNhanVien, IDGiamGia, NgayLapHoaDon, TongTien, TienGiamGia, 0)"+"values(?, ?, ?, ?, ?, ?, ?)";
+        try {
+            Connection connection=SQLServerConnection.getConnection();
+            PreparedStatement pr=connection.prepareStatement(sqlQuery);
+            
+            pr.setString(1, hoaDon.getIDHoaDon());
+            pr.setString(2, hoaDon.getIDKhachHang());
+            pr.setString(3, hoaDon.getIDNhanVien());
+            pr.setString(4, hoaDon.getIDGiamGia());
+            pr.setDate(5, new java.sql.Date(hoaDon.getNgayLapHoaDon().getTime()));
+            pr.setDouble(6, hoaDon.getTongTien());
+            pr.setDouble(7, hoaDon.getTienGiamGia());
+           
+            return pr.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int deleteHoaDon(String IDHoaDon) {
+        String sqlQuery = "update HoaDon set TrangThai = 1 where IDHoaDon = ?";
+        try {
+            Connection connection = SQLServerConnection.getConnection();
+            PreparedStatement pr = connection.prepareStatement(sqlQuery);
+
+            pr.setString(1, IDHoaDon);
+
+            return pr.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int updateHoaDon(HoaDonDTO hoaDon) {
+        String sqlQuery = "update HoaDon set IDKhachHang = ?, IDNhanVien = ?, IDGiamGia = ?,NgayLapHoaDon = ?, TongTien = ?, TienGiamGia = ? where IDHoaDon = ?";
+
+        try {
+            Connection connection = SQLServerConnection.getConnection();
+            PreparedStatement pr = connection.prepareStatement(sqlQuery);
+
+            pr.setString(1, hoaDon.getIDKhachHang());
+            pr.setString(2, hoaDon.getIDNhanVien());
+            pr.setString(3, hoaDon.getIDGiamGia());
+            pr.setDate(4, new java.sql.Date(hoaDon.getNgayLapHoaDon().getTime()));
+            pr.setDouble(5, hoaDon.getTongTien());
+            pr.setDouble(6, hoaDon.getTongTien());
+            pr.setString(7, hoaDon.getIDHoaDon());
+
+            return pr.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

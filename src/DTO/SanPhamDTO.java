@@ -1,53 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTO;
 
-/**
- *
- * @author Dell
- */
 public class SanPhamDTO {
-    private int IDsp;
-    private String IDLoaisp;
-    private String Tensp;
+
+    private String IDSanPham;
+    private String IDLoaiSanPham;
+    private String TenSanPham;
     private int Soluong;
-    private Double Dongia;
+    private int SoLuongGioHang;
+    private Double DonGia;
+    private int TrangThai;
+    private Double ThanhTien;
 
     public SanPhamDTO() {
     }
+    
+    public SanPhamDTO(String IDSanPham, int soLuong) {
+        this.IDSanPham =IDSanPham;
+        this.Soluong = soLuong;
+    }
 
-    public SanPhamDTO(int IDsp, String IDLoaisp, String Tensp, int Soluong, Double Dongia) {
-        this.IDsp = IDsp;
-        this.IDLoaisp = IDLoaisp;
-        this.Tensp = Tensp;
+    public SanPhamDTO(String IDSanPham, String TenSanPham, int SoLuongGioHang, Double DonGia, Double ThanhTien) {
+        this.IDSanPham = IDSanPham;
+        this.TenSanPham = TenSanPham;
+        this.SoLuongGioHang = SoLuongGioHang;
+        this.DonGia = DonGia;
+        this.ThanhTien = ThanhTien;
+    }
+
+    public SanPhamDTO(String IDSanPham, String IDLoaiSanPham, String TenSanPham, int Soluong, Double DonGia, int TrangThai) {
+        this.IDSanPham = IDSanPham;
+        this.IDLoaiSanPham = IDLoaiSanPham;
+        this.TenSanPham = TenSanPham;
         this.Soluong = Soluong;
-        this.Dongia = Dongia;
+        this.DonGia = DonGia;
+        this.TrangThai = TrangThai;
     }
 
-    public int getIDsp() {
-        return IDsp;
+    public String getIDSanPham() {
+        return IDSanPham;
     }
 
-    public void setIDsp(int IDsp) {
-        this.IDsp = IDsp;
+    public void setIDSanPham(String IDsp) {
+        this.IDSanPham = IDsp;
     }
 
-    public String getIDLoaisp() {
-        return IDLoaisp;
+    public String getIDLoaiSanPham() {
+        return IDLoaiSanPham;
     }
 
-    public void setIDLoaisp(String IDLoaisp) {
-        this.IDLoaisp = IDLoaisp;
+    public void setIDLoaiSanPham(String IDLoaisp) {
+        this.IDLoaiSanPham = IDLoaisp;
     }
 
-    public String getTensp() {
-        return Tensp;
+    public String getTenSanPham() {
+        return TenSanPham;
     }
 
-    public void setTensp(String Tensp) {
-        this.Tensp = Tensp;
+    public void setTenSanPham (String Tensp) {
+        this.TenSanPham = Tensp;
     }
 
     public int getSoluong() {
@@ -59,13 +69,45 @@ public class SanPhamDTO {
     }
 
     public Double getDongia() {
-        return Dongia;
+        return DonGia;
     }
 
-    public void setDongia(Double Dongia) {
-        this.Dongia = Dongia;
+    public void setDongia(Double DonGia) {
+        this.DonGia = DonGia;
+    }
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
+    public Double getDonGia() {
+        return DonGia;
+    }
+
+    public void setDonGia(Double DonGia) {
+        this.DonGia = DonGia;
+    }
+
+    public Double getThanhTien() {
+        return ThanhTien;
+    }
+
+    public void setThanhTien(Double ThanhTien) {
+        this.ThanhTien = ThanhTien;
+    }
+
+    public int getSoLuongGioHang() {
+        return SoLuongGioHang;
+    }
+
+    public void setSoLuongGioHang(int SoLuongGioHang) {
+        this.SoLuongGioHang = SoLuongGioHang;
     }
     
-            
     
+
 }

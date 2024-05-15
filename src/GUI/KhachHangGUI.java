@@ -1,29 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
 import BUS.KhachHangBUS;
 import DAO.KhachHangDAO;
+import DTO.KhachHangDTO;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Hoang Phu
- */
 public class KhachHangGUI extends javax.swing.JFrame {
+
     private KhachHangBUS khachHangBUS;
     private KhachHangDAO khachHangDAO;
     private DefaultTableModel model;
-    
+
     public KhachHangGUI() {
         initComponents();
+        setLocationRelativeTo(null);
 
-        khachHangDAO =new KhachHangDAO();
-        khachHangBUS=new KhachHangBUS();
+        khachHangDAO = new KhachHangDAO();
+        khachHangBUS = new KhachHangBUS();
         tbKhachHang.fixTable(jScrollPane1);
-        model=(DefaultTableModel) tbKhachHang.getModel();
+        model = (DefaultTableModel) tbKhachHang.getModel();
         showTableKhachHang();
     }
 
@@ -469,8 +465,22 @@ public class KhachHangGUI extends javax.swing.JFrame {
             showTableKhachHang();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
-    public void showTableKhachHang(){
-        khachHangBUS.rendeerTable(model);
+    public void showTableKhachHang() {
+        ArrayList<KhachHangDTO> danhSachKhachHang = khachHangBUS.getDanhSachKhachHang();
+        model.setRowCount(0);
+        for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+            if (khachHangDTO.getTrangThai() == 0) {
+                model.addRow(new Object[]{khachHangDTO.getIDKhachHang(), khachHangDTO.getHoKH(), khachHangDTO.getTenKh(), khachHangDTO.getSDT(), khachHangDTO.getGmail(), khachHangDTO.getGioiTinh(), khachHangDTO.getTongchitieu()});
+            }
+        }
+    }
+
+    private void showTableKhachHangSearch(String keyValue) {
+        model.setRowCount(0);
+        ArrayList<KhachHangDTO> danhSachKhachHangTimKiem = khachHangBUS.getArrayKhachHangByKeyValue(keyValue);
+        for (KhachHangDTO khachHang : danhSachKhachHangTimKiem) {
+            model.addRow(new Object[]{khachHang.getIDKhachHang(), khachHang.getHoKH(), khachHang.getTenKh(), khachHang.getSDT(), khachHang.getGmail(), khachHang.getGioiTinh(), khachHang.getTongchitieu()});
+        }
     }
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -481,9 +491,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
         String gmail = this.txtGmail.getText();
         String gioitinh = getRadioGioiTinh();
         double tongTien = Double.parseDouble(this.txtTongCT.getText());
-
         int TrangThai = 0;
-        if (khachHangBUS.updateKhachHang(id, ho, ten, SDT, gmail, gioitinh, tongTien,TrangThai)) {
+
+        KhachHangDTO khachHang = new KhachHangDTO(id, ho, ten, SDT, gmail, gioitinh, tongTien, TrangThai);
+
+        if (khachHangBUS.updateKhachHang(khachHang)) {
             showTableKhachHang();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -501,9 +513,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         String key = txtSearch.getText().toLowerCase();
         showTableKhachHangSearch(key);
     }//GEN-LAST:event_btnSearchActionPerformed
-    public void showTableKhachHangSearch(String key) {
-        khachHangBUS.renderNhanVienTableSearch(model, key);
-    }
+ 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String id = this.txtIDKH.getText();
@@ -514,8 +524,9 @@ public class KhachHangGUI extends javax.swing.JFrame {
         String gioitinh = getRadioGioiTinh();
         double tongTien = Double.parseDouble(this.txtTongCT.getText());
 
-        int TrangThai = 0;
-        if (khachHangBUS.addKhachHang(id, ho, ten,  SDT, gmail, gioitinh,tongTien, TrangThai)) {
+        KhachHangDTO khachHang = new KhachHangDTO(id, ho, ten, SDT, gmail, gioitinh, tongTien, 0);
+
+        if (khachHangBUS.addKhachHang(khachHang)) {
             showTableKhachHang();
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -545,8 +556,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         txtGmail.setText(model.getValueAt(i, 4).toString());
         String gioiTinh = (model.getValueAt(i, 5).toString());
         txtTongCT.setText(model.getValueAt(i, 6).toString());
-        
-        
+
         if (gioiTinh.equals("Nữ") || gioiTinh.equals("Nu")) {
             setRadioGioiTinh("Nu");
         } else {
@@ -594,7 +604,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private StorageGUI.Button btnAdd;

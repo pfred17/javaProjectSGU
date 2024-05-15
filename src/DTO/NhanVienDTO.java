@@ -1,6 +1,7 @@
-  package DTO;
+package DTO;
 
 public class NhanVienDTO {
+
     private String IDNhanVien;
     private String HoNhanVien;
     private String TenNhanVien;
@@ -9,12 +10,13 @@ public class NhanVienDTO {
     private String Gmail;
     private String GioiTinh;
     private int TrangThai;
+    private int taiKhoan;
 
-    public NhanVienDTO(){
-        
+    public NhanVienDTO() {
+
     }
-    
-    public NhanVienDTO(String IDNhanVien, String HoNhanVien, String TenNhanVien, String LoaiNhanVien, String SDT, String Gmail, String GioiTinh, int TrangThai) {
+
+    public NhanVienDTO(String IDNhanVien, String HoNhanVien, String TenNhanVien, String LoaiNhanVien, String SDT, String Gmail, String GioiTinh, int TrangThai, int taiKhoan) {
         this.IDNhanVien = IDNhanVien;
         this.HoNhanVien = HoNhanVien;
         this.TenNhanVien = TenNhanVien;
@@ -23,6 +25,7 @@ public class NhanVienDTO {
         this.Gmail = Gmail;
         this.GioiTinh = GioiTinh;
         this.TrangThai = TrangThai;
+        this.taiKhoan = taiKhoan;
     }
 
     public String getIDNhanVien() {
@@ -56,7 +59,7 @@ public class NhanVienDTO {
     public void setLoaiNhanVien(String LoaiNhanVien) {
         this.LoaiNhanVien = LoaiNhanVien;
     }
-    
+
     public String getSDT() {
         return SDT;
     }
@@ -87,5 +90,14 @@ public class NhanVienDTO {
 
     public void setTrangThai(int daKhoa) {
         this.TrangThai = daKhoa;
-    }    
+    }
+
+    public int getTaiKhoan() {
+        return taiKhoan;
+    }
+
+    public void setTaiKhoan(int taiKhoan) {
+        this.taiKhoan = taiKhoan;
+    }
+
 }
